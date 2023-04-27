@@ -1,11 +1,8 @@
 from time import sleep
 from celery import Celery
 
-app = Celery(
-    main='main',
-    backend='rpc://',
-    broker='amqp://localhost',
-)
+app = Celery(main='main')
+app.config_from_object('conf')
 
 
 @app.task
@@ -16,5 +13,4 @@ def add(x, y):
 
 if __name__ == '__main__':
     result = add.delay(5, 3)
-    # result.ready()
     print(result.get())
