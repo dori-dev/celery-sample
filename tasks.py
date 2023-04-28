@@ -1,5 +1,5 @@
 from time import sleep
-from celery import Celery, chain, group
+from celery import Celery, signals, chain, group
 
 app = Celery(main='tasks')
 app.config_from_object('conf')
@@ -24,6 +24,17 @@ def success():
 @app.task
 def success_message(number):
     return f'The result is {number}'
+
+
+@signals.task_success.connect(sender=add)
+def success_add(sender, result, **kwargs):
+    print(f'success sum: {result}')
+
+
+# @signals.task_prerun.connect
+# def show(sender=None, **kwargs):
+#     print(sender)
+#     print(kwargs)
 
 
 if __name__ == '__main__':
