@@ -37,6 +37,12 @@ def success_add(sender, result, **kwargs):
 #     print(kwargs)
 
 
+# @signals.task_postrun.connect
+# def show_info(sender, **kwargs):
+#     print(sender.request.task)
+#     print(sender.request.delivery_info)
+
+
 if __name__ == '__main__':
     # simple usage
     result = add.delay(2, 3)
