@@ -1,15 +1,48 @@
+# Sample Sample
+
+Sample of using Celery in python.
+
+#
+
+## Celery Worker
+
+```
 celery -A tasks worker -l INFO
+```
+
+## Run Tasks
+
+```
+python tasks.py
+```
+
+## Management GUI for Celery
+
+```
+celery flower -A tasks --broker=amqp://guest:guest@localhost:5672//
+```
+
+## Celery Beat
+
+```
+celery -A tasks beat
+```
+
+## Use Another Pools
+
+```
 celery -A tasks worker -l INFO --pool=solo --concurrency=1
 celery -A tasks worker -l INFO --pool=eventlet --concurrency=500
+```
 
-perfork => CPU-Bound
-solo => Whole CPU
-eventlet => IO-Bound
+`perfork` => CPU-Bound <br>
+`solo` => Whole CPU <br>
+`eventlet` => IO-Bound <br>
 
-use 3 worker and queues for each one
+#
 
-python tasks.py
+## Links
 
-celery flower -A tasks --broker=amqp://guest:guest@localhost:5672//
+Download Source Code: [Click Here](https://github.com/dori-dev/celery-sample/archive/refs/heads/master.zip)
 
-celery -A tasks beat
+My Github Account: [Click Here](https://github.com/dori-dev/)
